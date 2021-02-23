@@ -7,6 +7,14 @@ class LinkedList {
     this.length = 0;
   }
 
+  // create method for array of value
+  create(arr) {
+    for (const ele of arr) {
+      this.push(ele);
+    }
+    return this;
+  }
+
   // method to add a new node in LinkedList
   push(value) {
     const newNode = new LinkedListNode(value);
@@ -18,13 +26,19 @@ class LinkedList {
       this.tail = newNode;
     }
     this.length++;
-    return newNode;
+    return this;
   }
 
   //method to push a new node in the tail of LinkedList
   pop() {
     if (!this.head) {
       return null;
+    } else if (this.length === 1) {
+      const removedNode = this.head;
+      this.head = null;
+      this.tail = null;
+      this.length--;
+      return removedNode;
     }
     let prev = this.head;
     let current = this.head.next;
@@ -35,15 +49,11 @@ class LinkedList {
     prev.next = null;
     this.tail = prev;
     this.length--;
-    if (this.length === 0) {
-      this.head = null;
-      this.tail = null;
-    }
     return current;
   }
 
   // method for remove the head from LinkedList
-  shift(value) {
+  shift() {
     if (!this.head) {
       return null;
     }
@@ -58,15 +68,16 @@ class LinkedList {
 
   // adding a new node in the head of linkedList
   unshift(value) {
-    const newNode = LinkedListNode(value);
+    const newNode = new LinkedListNode(value);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
     }
-    newNode.next = this.head;
-    this.head = newNode;
     this.length++;
-    return newNode;
+    return this;
   }
 
   delete(value) {
@@ -92,7 +103,7 @@ class LinkedList {
       }
       currentNode = currentNode.next;
     }
-    return deleteNode;
+    return this;
   }
 
   // get the node at that position. indexing counting from zero
@@ -114,7 +125,7 @@ class LinkedList {
       return null;
     }
     currentNode.value = newValue;
-    return currentNode;
+    return this;
   }
 
   insert(index, value) {
@@ -125,12 +136,12 @@ class LinkedList {
     } else if (index === 0) {
       return this.unshift(value);
     } else {
-      const newNode = LinkedListNode(value);
+      const newNode = new LinkedListNode(value);
       const prev = this.get(index - 1);
       newNode.next = prev.next;
       prev.next = newNode;
       this.length++;
-      return newNode;
+      return this;
     }
   }
 
@@ -165,3 +176,5 @@ class LinkedList {
     return this;
   }
 }
+
+export default LinkedList;
