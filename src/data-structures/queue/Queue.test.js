@@ -12,6 +12,7 @@ describe('Queue', () => {
     const queueMessage = new Queue();
 
     expect(queueMessage.isEmpty()).toBe(true);
+    expect(queueMessage.peek()).toBe(null);
     expect(queueMessage.dequeue()).toBe(null);
   });
 
@@ -21,5 +22,6 @@ describe('Queue', () => {
     expect(queueMessage.enqueue('hello').toString()).toBe('hello, ');
     expect(queueMessage.enqueue('world').toString()).toBe('hello, world, ');
     expect(queueMessage.dequeue()).toBe('hello');
+    expect(queueMessage.peek()).toBe('world');
   });
 });
