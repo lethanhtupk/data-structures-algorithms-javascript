@@ -175,6 +175,17 @@ class LinkedList {
     }
     return this;
   }
+
+  // display LinkedList as a string
+  display() {
+    let currentNode = this.head;
+    let str = '';
+    while (currentNode) {
+      str += currentNode.value + ', ';
+      currentNode = currentNode.next;
+    }
+    return str;
+  }
 }
 
 export default LinkedList;
