@@ -186,6 +186,16 @@ class LinkedList {
     }
     return str;
   }
+
+  toArray() {
+    let currentNode = this.head;
+    const arr = [];
+    while (currentNode) {
+      arr.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+    return arr;
+  }
 }
 
 export default LinkedList;
